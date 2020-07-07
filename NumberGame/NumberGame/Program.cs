@@ -19,8 +19,9 @@ namespace NumberGame
             Populate(inputArr);
            int sum = GetSum(inputArr);
             Console.WriteLine("The sum of the array is {0}", sum);
-            /*int product = GetProduct(InputArr,sum);
-            decimal quotient =  GetQuotient(product);*/
+            int product = GetProduct(inputArr,sum);
+            Console.WriteLine($"{sum} * {product/sum} = {product}");
+            /*decimal quotient =  GetQuotient(product);*/
      
            
         }   
@@ -53,6 +54,23 @@ namespace NumberGame
                 throw(new Exception($"Value of {sum} is too low"));
             }
             return sum;
+        }
+
+        // get the product of the sum of the array and the value of the index user chooses
+        static int GetProduct(int[] arr , int arrSum)
+        {
+            try
+            {
+                Console.WriteLine("Select a random number from 1 to {0} ", arr.Length);
+                int userInput = Convert.ToInt32(Console.ReadLine());
+                int product = arr[userInput] * arrSum;
+                return product;
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+                throw e;
+            }
         }
     }
 }
