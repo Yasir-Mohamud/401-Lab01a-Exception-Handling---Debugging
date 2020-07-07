@@ -17,13 +17,14 @@ namespace NumberGame
             Console.WriteLine($"Your answer is  {answer}");
             int[] inputArr = new int[answer];
             Populate(inputArr);
-           /* int sum = GetSum(InputArr);
-            int product = GetProduct(InputArr,sum);
+           int sum = GetSum(inputArr);
+            Console.WriteLine("The sum of the array is {0}", sum);
+            /*int product = GetProduct(InputArr,sum);
             decimal quotient =  GetQuotient(product);*/
      
            
         }   
-        
+        // populates the array with numbers the user inputs
         static int[] Populate(int[] arr)
         {
             Console.WriteLine(" The size of your array is {0} ", arr.Length);
@@ -34,6 +35,24 @@ namespace NumberGame
 
             }
             return arr;
+        }
+
+        // Gets the sum of all the number in the array
+        static int GetSum(int[] arr)
+        {
+            int sum = 0;
+            int sumMin = 20;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int oneArr = arr[i];
+                sum += oneArr;
+            }
+            if (sum < sumMin)
+            {
+                throw(new Exception($"Value of {sum} is too low"));
+            }
+            return sum;
         }
     }
 }
