@@ -21,24 +21,37 @@ namespace NumberGame
             }
         }
 
+        // Starts the number game
         static void StartSequence()
         {
-            Console.WriteLine("Welcome to my game! Let's do some math!");
-            Console.WriteLine("Enter a number greater than zero");
-            int answer = Convert.ToInt32(Console.ReadLine());
-            int[] inputArr = new int[answer];
-            Populate(inputArr);
-           int sum = GetSum(inputArr);
-            int product = GetProduct(inputArr, sum);
-            decimal quotient = GetQuotient(product);
+            try
+            {
 
-            Console.WriteLine("Your array size is {0}", inputArr.Length);
-            Console.WriteLine($"The numbers in the array are {string.Join(", " , inputArr)}");
-            Console.WriteLine($"The sum of the array is {sum}");
-            Console.WriteLine($"{sum} * {product / sum} = {product}");
-            Console.WriteLine($"{product} / {product / quotient} = {quotient}");
-            Console.ReadLine();
-           
+
+                Console.WriteLine("Welcome to my game! Let's do some math!");
+                Console.WriteLine("Enter a number greater than zero");
+                int answer = Convert.ToInt32(Console.ReadLine());
+                int[] inputArr = new int[answer];
+               int[] popArr =  Populate(inputArr);
+                int sum = GetSum(popArr);
+                int product = GetProduct(popArr, sum);
+                decimal quotient = GetQuotient(product);
+
+                Console.WriteLine("Your array size is {0}", inputArr.Length);
+                Console.WriteLine($"The numbers in the array are {string.Join(", ", inputArr)}");
+                Console.WriteLine($"The sum of the array is {sum}");
+                Console.WriteLine($"{sum} * {product / sum} = {product}");
+                Console.WriteLine($"{product} / {product / quotient} = {quotient}");
+                Console.ReadLine();
+            }
+            catch(FormatException f)
+            {
+                Console.WriteLine(f);
+            }
+            catch(OverflowException o)
+            {
+                Console.WriteLine(o);
+            }
         }   
         // populates the array with numbers the user inputs
         static int[] Populate(int[] arr)
